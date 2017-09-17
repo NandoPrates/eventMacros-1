@@ -1,0 +1,74 @@
+automacro grind_zombie {
+	BaseLevel 22..34
+	ConfigKeyNot Grinding zombie
+	run-once 1
+	call lvlVia "zombie"
+}
+
+automacro grind_wolf {
+	BaseLevel 35..40
+	ConfigKeyNot Grinding wolf
+	run-once 1
+	call lvlVia "wolf"
+}
+
+automacro grind_bigfoot {
+	BaseLevel 41..50
+	ConfigKeyNot Grinding bigfoot
+	run-once 1
+	call lvlVia "bigfoot"
+}
+
+automacro grind_hode {
+	BaseLevel 51..60
+	ConfigKeyNot Grinding hode
+	run-once 1
+	call lvlVia "hode"
+}
+
+macro lvlVia {
+	do conf -f Grinding $.param[0]
+	switch ( $.param[0] ) {
+		case (=~ /willow/i ) {
+		   	[
+				do conf lockMap pay_fild01
+			   	do conf storageAuto 1
+			   	do conf sellAuto 1
+				do conf buyredpot.disabled 1
+				do mconf creamy 0 0 0
+			]
+		}
+		case (=~ /zombie/i ) {
+		   	[
+			   do conf lockMap pay_dun00
+			   do conf storageAuto 1
+			   do conf sellAuto 1
+			   do conf buyredpot.disabled 0
+			]
+		}
+		case (=~ /bigfoot/i ) {
+		   	[
+			   do conf lockMap pay_fild07
+			   do conf storageAuto 1
+			   do conf sellAuto 1
+			   do conf buyredpot.disabled 0
+			]
+		}
+		case (=~ /wolf/i ) {
+		   	[
+			   do conf lockMap pay_fild02
+			   do conf storageAuto 1
+			   do conf sellAuto 1
+			   do conf buyredpot.disabled 0
+			]
+		}
+		case (=~ /hode/i ) {
+		   	[
+			   do conf lockMap moc_fild17
+			   do conf storageAuto 1
+			   do conf sellAuto 1
+			   do conf buyredpot.disabled 1
+			]
+		}
+	}
+}
