@@ -1,3 +1,13 @@
+automacro grind_willow {
+	BaseLevel 1..21
+	ConfigKeyNot Grinding willow
+	run-once 1
+	call {
+		call lvlVia "willow"
+	}
+}
+
+
 automacro grind_zombie {
 	BaseLevel 22..34
 	ConfigKeyNot Grinding zombie
