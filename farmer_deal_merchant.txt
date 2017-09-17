@@ -1,0 +1,57 @@
+automacro give_items {
+    SimpleHookEvent engaged_deal
+    exclusive 1
+    call {
+        $i = 0
+        @myLoots = (Cyfar, Witherless Rose, Rotten Fish, Zargon, Blue Hair, Rough Oridecon, Steel, Moth Dust, Star Dust, Moth Wings, Insect Feeler)
+        while ($i <= 10 ) {
+            $itemid = &inventory($myLoots[$i])
+            do deal add $itemid if ($itemid > 0)
+            $i++
+        }
+        do deal
+        do deal
+        release all
+    }
+}
+
+automacro deal_complete {
+    SimpleHookEvent complete_deal
+    exclusive 1
+    call {
+        do conf lockMap gef_fild05
+    }
+}
+
+automacro Move_if_die {
+    InMap geffen, comodo
+    CharCurrentWeight >= 30%
+    run-once 1
+    call {
+        pause 1
+        do conf lockMap none
+        do move geffen_in 70 138
+        release Move_if_die
+    }
+}
+
+automacro Deal {
+    InMap geffen_in
+    CharCurrentWeight >= 30%
+    PlayerNear /NAME_OF_MERCHANT/i
+    timeout 20
+    call {
+        do deal $.PlayerNearLastBinId
+    }
+}
+
+automacro Respawn {
+    InMap gef_fild05, cmd_fild03
+    CharCurrentWeight >= 48%
+    run-once 1
+    call {
+        pause 1
+        do respawn
+        release Respawn
+    }
+}

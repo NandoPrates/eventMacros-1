@@ -1,0 +1,22 @@
+automacro do_deal {
+	SimpleHookEvent incoming_deal
+    call {
+        do deal
+    	do deal
+    }
+}
+
+automacro finalized_deal {
+    SimpleHookEvent finalized_deal
+    call {
+        do deal
+    }
+}
+
+automacro deal_complete {
+    SimpleHookEvent complete_deal
+    exclusive 1
+    call {
+        do autosell
+    }
+}
